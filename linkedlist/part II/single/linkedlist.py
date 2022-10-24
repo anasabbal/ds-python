@@ -20,16 +20,36 @@ class Linkedlist:
 
         start.setNext(new_node)
 
-    def insert_at_position(self, data, index):
-        if self.head is None:
-            self.insert_at_begin(data)
+    def remove(self, item):
+        start = self.head
+        previous = None
+        get = False
+
+        # search
+        while not get:
+            if start.getData() == item:
+                get = True
+            else:
+                previous = start
+                start = start.getNextNode()
+
+        if previous is None:
+            self.head = start.getNextNode()
+        else:
+            previous.setNext(start.getNextNode())
+        return get
+
+        
+    def clear_linked_list(self):
+        self.head = None
+        return True
     
     def display(self):
         start = self.head
         if start is None:
             print("Empty Linked list")
             return False
-            
+
         while start:
             print(str(start.data), end=" ")
             start = start.next
@@ -62,6 +82,10 @@ list_arr.insert_at_begin(3)
 list_arr.insert_at_begin(2)
 
 # Display Linked list
+list_arr.display()
+print(list_arr.size())
+
+print(list_arr.remove(5))
 list_arr.display()
 
 # Size linkedlist
