@@ -5,7 +5,6 @@ class Linkedlist:
     def __init__(self):
         self.head = None
 
-
     def insert_at_begin(self, data):
         new_node = Node(data)
         new_node.setNext(self.head)
@@ -38,6 +37,16 @@ class Linkedlist:
         else:
             previous.setNext(start.getNextNode())
         return get
+
+    def get_item_from_index(self, index):
+        start = self.head
+        position = int(index)
+        pos = 1
+        while pos != position:
+            start = start.getNextNode()
+            pos += 1
+        data = start.getData()
+        return data
 
         
     def clear_linked_list(self):
@@ -90,3 +99,7 @@ list_arr.display()
 
 # Size linkedlist
 print(list_arr.size())
+
+# print data by index
+print(list_arr.get_item_from_index(3))
+print(list_arr.get_item_from_index(2))
