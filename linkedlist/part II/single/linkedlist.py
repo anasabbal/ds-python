@@ -113,6 +113,17 @@ class Linkedlist:
             start = start.getNextNode()
         return nodeList
 
+    # find node by index
+    def find_by_index(self, index):
+        start = self.head
+        position = 1
+
+        while position < index:
+            start = start.getNextNode()
+            position += 1
+        return start.getData()
+            
+
     # sort linked list
     # def sort
 
@@ -134,6 +145,8 @@ list_arr = Linkedlist()
 list_arr.insert_at_begin(5)
 list_arr.insert_at_begin(1)
 list_arr.insert_at_begin(4)
+list_arr.display()
+print(list_arr.find_by_index(4))
 list_arr.insert_at_begin(7)
 
 
