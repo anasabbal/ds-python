@@ -146,7 +146,7 @@ list_arr.insert_at_begin(5)
 list_arr.insert_at_begin(1)
 list_arr.insert_at_begin(4)
 list_arr.display()
-print(list_arr.find_by_index(4))
+print(list_arr.find_by_index(2))
 list_arr.insert_at_begin(7)
 
 
