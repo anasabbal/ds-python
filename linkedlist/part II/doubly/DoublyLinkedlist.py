@@ -63,11 +63,13 @@ class DoublyLinkedList:
         if index == 0:
             return self.head.data
 
+        position = 1
         current = self.head
-        for i in range(index - 1):
+        while position < index:
             current = current.next
-            if(i is index):
-                return current
+            position += 1
+        node = current
+        return node
 
 
     def insertAtPosition(self, index, data):
@@ -93,11 +95,38 @@ class DoublyLinkedList:
         
         return new_node
 
+    def removeByIndex(self, index):
+        if index > self.size():
+            print("Index Out of range list")
+            return
+        if index == self.size():
+            last_node = self.findLastNode()
+            last_node = None
+            return 
+        if index == 0:
+            first_node = self.head
+            next_node = first_node.next
+            first_node = None
+            self.head = next_node
+            return
+        
+        current = self.head
+
+        for i in range(index):
+            current = current.next
+            prev = current.previous
+            nex = current.next
+
+            if(i == index):
+                nex.previous = prev
+                prev.next = nex
+                current = None
+                return
     
     def display(self):
         temp = self.head
         while temp is not None:
-            print(temp.data, end=' ')
+            print(temp.data, end='')
             temp = temp.next
         print()
 
@@ -109,11 +138,18 @@ if __name__ == '__main__':
     lst.insertAtBegin(1)
     lst.insertAtPosition(2, 8)
     # size
-    print(lst.size(), end="\n")
+    
     # display
     lst.display()
     # find last node
-    print(lst.findLastNode().data)
+    print(lst.findLastNode().data, end='\n')
 
-    print(lst.searchByIndex(2))
+    print(lst.searchByIndex(2).data, end='\n')
+
+    lst.removeByIndex(2)
+    
+
+    print(lst.size(), end='\n')
+
+    lst.display()
 
