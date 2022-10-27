@@ -4,17 +4,17 @@ class LinkedList:
         self.head = None
 
     def print_list(self):
-            item = self.head
-            while(item):
-                print(item.data , "  ",end= " ")
-                item = item.next
+        item = self.head
+        while(item):
+            print(item.data , "  ",end= " ")
+            item = item.next
     def print_list_reversly(self):
-            item = self.head
-            help = LinkedList()
-            while(item) :
-                help.add_in_bigining(item.data)
-                item = item.next
-            help.print_list()
+        item = self.head
+        help = LinkedList()
+        while(item) :
+            help.add_in_bigining(item.data)
+            item = item.next
+        help.print_list()
 
     def reverse_list(self):
         item = self.head
@@ -22,7 +22,7 @@ class LinkedList:
         while(item) :
             help.add_in_bigining(item.data)
             item = item.next
-        self.head = help
+        self.head = help.head
 
     def size_list(self) :
         item = self.head
@@ -38,8 +38,8 @@ class LinkedList:
         self.head = data
 
     def add_at_end(self, data):
-        if(self == None):
-            self.add_in_bigining(self, data)
+        if(self.head == None):
+            self.add_in_bigining(data)
         else:
             help = self.head
             data = Node(data)
@@ -98,38 +98,56 @@ class LinkedList:
         while(head):
             if(head.data == value):
                 return i
+            head = head.next
             i = i + 1
         return False
 
     def delete_by_value(self,value):
-        help = self.search_by_value(self, value)
+        help = self.search_by_value(value)
         if help != False :
-            self.delete_by_position(self,help)
+            self.delete_by_position(help)
 
-    # def sort_liste(self):
+    def sort_liste(self):
+        item = self.head
+        while item.next :
+            help = item.next
+            while help:
+                if(item.data > help.data):
+                    perm = item.data
+                    item.data = help.data
+                    help.data = perm
+                help = help.next
+            item = item.next
+
+
        
 
-    def get_the_minimum_help(self, help = False):
+    def get_the_minimum(self):
         item = self.head
-        Next_item = item
-        min 
+        min = item.data
         while item.next :
-            Next_item = item.next
-            if help != False :
-                if item.data < Next_item.data :
-                    min = Next_item.data
-                else :
-                    min = item.data
-            else :
-                if item.data < Next_item.data and Next_item.data != help :
-                    min = Next_item.data
-                else :
-                    min = item.data
+            if min > item.next.data :
+                min = item.next.data 
             item = item.next
         return min
+
+    def get_the_maximun(self):
+        item = self.head
+        max = item.data
+        while item.next :
+            if max < item.next.data :
+                max = item.next.data      
+            item = item.next
+        return max
     
     def delete_duplicated_item(self):
-        print()
+        self.sort_liste()
+        item = self.head
+        while item.next:
+            if(item.data == item.next.data):
+                self.delete_by_value(item.data)
+            item = item.next
+        
 
 
 ask = True
@@ -137,13 +155,14 @@ liste = LinkedList()
 while ask :
     print("\t\t\t Linked List implementation ")
     print("\t\t\t Size list : ",liste.size_list()," items")
-    print("\n\n\t\t 1/ Read liste     \t\t 2/ Read liste reversly")
-    print("\t\t 3/ Insert in beginig  \t\t 4/ Insert at given position")
-    print("\t\t 5/ Insert at the end  \t\t 6/ Delete the first")
-    print("\t\t 7/ Delete by key      \t\t 8/ Delete the last")
-    print("\t\t 9/ Delete by value    \t\t 10/ Reverse List ")
-    print("\t\t 11/ Sort List         \t\t 12/search by value")
-    print("\t\t 13/ delete duplicated items  ")
+    print("\n\n\t\t 1/ Read liste           \t\t 2/ Read liste reversly")
+    print("\t\t 3/ Insert in beginig        \t\t 4/ Insert at given position")
+    print("\t\t 5/ Insert at the end        \t\t 6/ Delete the first")
+    print("\t\t 7/ Delete by key            \t\t 8/ Delete the last")
+    print("\t\t 9/ Delete by value          \t\t 10/ Reverse List ")
+    print("\t\t 11/ Sort List               \t\t 12/ Search by value")
+    print("\t\t 13/ Delete duplicated items \t\t 14/ The minimun ")
+    print("\t\t 15/ The maximun ")
    
     choise = int(input("Enter your choise : "))
     if choise == 1 :
@@ -189,7 +208,8 @@ while ask :
             liste.reverse_list()
 
     if choise == 11 :
-        print("not yet")
+        if(liste.head != None and liste.size_list() > 1):
+            liste.sort_liste()
 
 
     if choise == 12 :
@@ -201,7 +221,19 @@ while ask :
             else:
                 print("the value not found !")
 
+    if choise == 13 :
+        if(liste.head != None and liste.size_list() > 1) :
+            liste.delete_duplicated_item()
+        
+    if choise == 14 :
+        if(liste.head != None) :
+            print("the minimun is : ",liste.get_the_minimum())
+        
+    if choise == 15 :
+        if(liste.head != None) :
+            print("the maximun is : ",liste.get_the_maximun())
             
+         
     print("\n")
     x = input("Return to the menu principal [y/n] : ")
     if(x != 'y' and x != 'Y'):
