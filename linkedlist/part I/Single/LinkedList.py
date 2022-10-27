@@ -8,6 +8,7 @@ class LinkedList:
             while(item):
                 print(item.data , "  ",end= " ")
                 item = item.next
+<<<<<<< HEAD
     def print_list_reversly(self):
             item = self.head
             help = LinkedList()
@@ -23,13 +24,19 @@ class LinkedList:
             help.add_in_bigining(item.data)
             item = item.next
         self.head = help
+=======
+>>>>>>> 0929753 (zabi)
 
     def size_list(self) :
         item = self.head
         i = 0
         while(item) :
             item = item.next
+<<<<<<< HEAD
             i = i+1
+=======
+            i = i + 1
+>>>>>>> 0929753 (zabi)
         return i
 
     def add_in_bigining(self, data):
@@ -47,7 +54,11 @@ class LinkedList:
                 help = help.next
             help.next = data
     def add_at_given_index(self,position,data):
+<<<<<<< HEAD
         if(position == self.size_list()):
+=======
+        if(position == self.size_list()+1):
+>>>>>>> 0929753 (zabi)
             self.add_at_end(data)
         else:
             if(position == 1):
@@ -56,13 +67,18 @@ class LinkedList:
                 help = self.head
                 prev = None
                 data = Node(data)
+<<<<<<< HEAD
                 i = 1
+=======
+                i = 0
+>>>>>>> 0929753 (zabi)
                 while i < position :
                     prev = help
                     help = help.next
                     i = i + 1
                 prev.next = data
                 data.next = help
+<<<<<<< HEAD
     def delete_first(self):
         self.head = self.head.next
 
@@ -207,5 +223,20 @@ while ask :
     if(x != 'y' and x != 'Y'):
         ask = False
 
+=======
+        
+
+    
+
+liste = LinkedList() 
+liste.head = Node(1)
+# print(liste.size_list())
+liste.add_in_bigining(3)
+liste.add_in_bigining(7)
+# liste.printList()
+liste.add_at_end(6)
+liste.add_at_given_index(3,5)
+liste.print_list()
+>>>>>>> 0929753 (zabi)
 
 
